@@ -310,7 +310,7 @@ const BLOG = {
     {
       name: 'OuterWilds',
       artist: 'Andrew Prahlow',
-      url: 'https://music.163.com/#/song?id=1903401563',
+      url: 'https://www.musicenc.com/article/8167358.html',
       cover:
         'https://image.api.playstation.com/vulcan/img/cfn/11307DTu3lzL6thuipVwZruYSmRFn1_SpucegJYgtAzcjZLIRPxpCVJkr5C8vfVy5FYMRdHbaJHQXOZldbhjm9ypcA4w51iZ.png'
     },
