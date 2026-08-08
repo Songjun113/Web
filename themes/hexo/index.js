@@ -134,7 +134,7 @@ const LayoutBase = props => {
               ` w-full mx-auto ${immersiveResearchHome ? '' : 'lg:flex lg:space-x-4 justify-center'} relative z-10`
             }>
             <div
-              className={`${className || ''} w-full ${fullWidth || immersiveResearchHome ? '' : 'max-w-4xl'} h-full overflow-hidden`}>
+              className={`${className || ''} w-full ${fullWidth || immersiveResearchHome ? '' : 'max-w-4xl'} h-full ${immersiveResearchHome ? 'overflow-visible' : 'overflow-hidden'}`}>
               {showArticleSwitchPlaceholder ? (
                 <ArticleSwitchPlaceholder />
               ) : (
