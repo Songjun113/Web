@@ -1,4 +1,6 @@
 const CONFIG = {
+  // 研究叙事首页：保留原博客列表并在其上方展示沉浸式研究方向。
+  HEXO_IMMERSIVE_RESEARCH_HOME: true,
   HEXO_HOME_BANNER_ENABLE: true,
   // 3.14.1以后的版本中，欢迎语在blog.config.js中配置，用英文逗号','隔开多个。
   HEXO_HOME_BANNER_GREETINGS: [

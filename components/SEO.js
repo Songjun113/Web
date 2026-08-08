@@ -356,10 +356,18 @@ const getSEOMeta = (props, router, locale) => {
   switch (router.route) {
     case '/':
       return {
-        title: `${siteInfo?.title} | ${siteInfo?.description}`,
-        description: `${siteInfo?.description}`,
-        image: `${siteInfo?.pageCover}`,
+        title: '松菌君 · Research | 信号、交互与康复',
+        description: '聚焦混合现实可交互场景 AI 生成、脑电运动与语言解码，以及卒中后精神与运动康复。',
+        image: '/og-research.png',
         slug: '',
+        type: 'website'
+      }
+    case '/achievements':
+      return {
+        title: '研究成果 · Achievements | 松菌君',
+        description: '经过确认的论文、项目、专利与奖项记录。',
+        image: '/og-research.png',
+        slug: 'achievements',
         type: 'website'
       }
     case '/archive':

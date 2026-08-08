@@ -82,13 +82,22 @@ const MyApp = ({ Component, pageProps }) => {
   )
 
   const enableClerk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  const standaloneResearchPage = route.pathname === '/achievements'
+  const pageContent = standaloneResearchPage ? (
+    <>
+      <SEO {...pageProps} />
+      <Component {...pageProps} />
+    </>
+  ) : (
+    <GLayout {...pageProps}>
+      <SEO {...pageProps} />
+      <Component {...pageProps} />
+    </GLayout>
+  )
   const content = (
     <AppErrorBoundary>
       <GlobalContextProvider {...pageProps}>
-        <GLayout {...pageProps}>
-          <SEO {...pageProps} />
-          <Component {...pageProps} />
-        </GLayout>
+        {pageContent}
         <ExternalPlugins {...pageProps} />
       </GlobalContextProvider>
     </AppErrorBoundary>

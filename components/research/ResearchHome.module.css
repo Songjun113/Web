@@ -1,0 +1,211 @@
+.experience {
+  --ink: #ecf5ff;
+  --muted: #91a0b8;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: clip;
+  background: #030713;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  isolation: isolate;
+  display: grid;
+  align-items: end;
+  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 6vw, 7rem);
+  background: radial-gradient(circle at 70% 35%, #1b2d68 0, #081022 34%, #02050d 74%);
+}
+
+.hero :global(.research-fluid-canvas) {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .19;
+  background-image: radial-gradient(rgba(255,255,255,.25) .6px, transparent .6px);
+  background-size: 5px 5px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.heroNav, .journeyHeader {
+  position: absolute;
+  top: 1.5rem;
+  left: clamp(1.25rem, 4vw, 4rem);
+  right: clamp(1.25rem, 4vw, 4rem);
+  display: flex;
+  justify-content: space-between;
+  color: #b7c3d7;
+  font: 600 .72rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .16em;
+}
+
+.heroNav a { color: inherit; text-decoration: none; }
+.heroCopy { max-width: 76rem; }
+.kicker, .sectionEyebrow {
+  margin-bottom: 1.5rem;
+  color: #74f7d1;
+  font: 600 clamp(.66rem, 1vw, .78rem)/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .17em;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 17ch;
+  font-size: clamp(3rem, 8.2vw, 8.7rem);
+  font-weight: 650;
+  line-height: .98;
+  letter-spacing: -.065em;
+  text-wrap: balance;
+}
+
+.hero h1 span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(1.1em);
+  animation: letter-rise .85s cubic-bezier(.16, 1, .3, 1) forwards;
+  animation-delay: calc(250ms + var(--letter-delay));
+}
+
+.heroEnglish {
+  max-width: 46rem;
+  margin: 2rem 0 0;
+  color: #aebbd0;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  line-height: 1.55;
+}
+
+.heroIndex {
+  position: absolute;
+  right: clamp(1.25rem, 4vw, 4rem);
+  bottom: 2rem;
+  color: #8794a8;
+  font: .72rem ui-monospace, monospace;
+  letter-spacing: .15em;
+}
+
+.journey { height: 320vh; background: #050914; }
+.journeySticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.journeyHeader { z-index: 10; }
+
+.track {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(5rem, .32fr) minmax(18rem, 1fr) minmax(15rem, .7fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 6rem);
+  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 7vw, 8rem);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(7%) scale(.985);
+  transition: opacity .65s ease, transform .9s cubic-bezier(.16, 1, .3, 1), visibility .65s;
+}
+
+.trackActive { opacity: 1; visibility: visible; transform: none; }
+.trackNumber {
+  align-self: start;
+  margin-top: 10vh;
+  color: var(--track-accent);
+  font: 400 clamp(4rem, 10vw, 10rem)/1 ui-monospace, monospace;
+  opacity: .21;
+}
+
+.trackCopy { position: relative; z-index: 2; max-width: 54rem; }
+.trackCopy > p:first-child { color: var(--track-accent); letter-spacing: .12em; text-transform: uppercase; font-size: .75rem; }
+.track h2 { margin: 1rem 0 2rem; font-size: clamp(2.6rem, 6vw, 6.3rem); line-height: 1.02; letter-spacing: -.055em; }
+.track blockquote { margin: 0; max-width: 34rem; font-size: clamp(1.05rem, 1.8vw, 1.5rem); line-height: 1.7; color: #d8e1ef; }
+.trackEnglish { max-width: 38rem; color: var(--muted); line-height: 1.65; }
+.trackCopy > div { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 2rem; }
+.trackCopy > div span { border: 1px solid color-mix(in srgb, var(--track-accent) 45%, transparent); border-radius: 999px; padding: .55rem .8rem; color: #cbd7e8; font-size: .73rem; }
+
+.trackOrb {
+  width: min(32vw, 28rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--track-accent) 85%, white), color-mix(in srgb, var(--track-accent) 28%, #10182d) 34%, transparent 70%);
+  box-shadow: 0 0 8rem color-mix(in srgb, var(--track-accent) 24%, transparent);
+  filter: saturate(.85);
+}
+
+.progressRail { position: absolute; right: 2rem; top: 25%; width: 1px; height: 50%; background: #283248; }
+.progressRail i { display: block; width: 2px; background: #74f7d1; transition: height .5s ease; }
+
+.carouselSection {
+  min-height: 110svh;
+  padding: clamp(6rem, 10vw, 10rem) clamp(1.25rem, 7vw, 8rem);
+  background: linear-gradient(180deg, #050914, #09061a);
+  text-align: center;
+}
+
+.carouselSection h2, .finale h2 { margin: 0 auto; max-width: 18ch; font-size: clamp(2.5rem, 5.7vw, 6rem); line-height: 1.08; letter-spacing: -.055em; }
+.carousel { position: relative; height: min(50rem, 64vh); margin: 2rem auto 0; perspective: 1100px; outline: none; }
+.carousel a { color: inherit; }
+.carouselCard {
+  --x: calc(var(--card-index) * 44%);
+  --z: calc(var(--card-depth) * -180px);
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(74vw, 31rem);
+  min-height: 24rem;
+  padding: clamp(1.5rem, 4vw, 3.25rem);
+  border: 1px solid rgba(150, 170, 220, .2);
+  border-radius: 1.5rem;
+  background: linear-gradient(145deg, rgba(28, 37, 70, .96), rgba(8, 11, 28, .96));
+  text-align: left;
+  opacity: var(--card-visibility);
+  transform: translate(-50%, -50%) translateX(var(--x)) translateZ(var(--z)) rotateY(calc(var(--card-index) * -24deg));
+  transition: transform .8s cubic-bezier(.16, 1, .3, 1), opacity .5s;
+  box-shadow: 0 2rem 6rem rgba(0,0,0,.38);
+}
+.carouselCard > span { color: #74f7d1; font: .7rem ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; }
+.carouselCard h3 { margin: 2.4rem 0 .6rem; font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.15; }
+.carouselCard p { color: #a8b4c8; line-height: 1.65; }
+.carouselCard .english { color: #d6def0; }
+.carouselCard b { position: absolute; left: 3rem; bottom: 2.5rem; color: #fff; font: .75rem ui-monospace, monospace; letter-spacing: .12em; }
+.carouselControls { display: flex; justify-content: center; align-items: center; gap: 2rem; color: #8290a6; font: .75rem ui-monospace, monospace; }
+.carouselControls button { width: 3rem; height: 3rem; border: 1px solid #35405a; border-radius: 50%; color: white; background: transparent; cursor: pointer; }
+
+.finale { position: relative; min-height: 130svh; display: grid; place-items: center; overflow: hidden; background: #040713; text-align: center; }
+.finalOrb { position: absolute; width: min(55vw, 45rem); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #8fffe3, #4359d8 38%, #11142d 72%); box-shadow: 0 0 12rem rgba(92, 119, 255, .25); }
+.finaleCopy { position: relative; z-index: 2; max-width: 70rem; padding: 5rem 1.25rem; }
+.finaleCopy > span { color: #07101c; font: 700 .72rem ui-monospace, monospace; letter-spacing: .16em; }
+.finale h2 { margin-top: 1.4rem; color: #06101c; }
+.finale p { margin: 1.5rem auto 2.5rem; max-width: 42rem; color: #13223b; font-size: 1rem; }
+.primaryLink, .secondaryLink { display: block; width: fit-content; margin: 1rem auto; font: 700 .75rem ui-monospace, monospace; letter-spacing: .11em; text-decoration: none; }
+.primaryLink { padding: 1.1rem 1.4rem; border-radius: 999px; background: #06101c; color: white; }
+.secondaryLink { color: #102039; }
+
+@keyframes letter-rise { to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 760px) {
+  .hero { min-height: 92svh; }
+  .heroNav a, .heroIndex { display: none; }
+  .track { grid-template-columns: 1fr; align-content: center; padding-top: 7rem; }
+  .trackNumber { position: absolute; top: 5rem; right: 1rem; margin: 0; }
+  .trackOrb { position: absolute; width: 70vw; right: -35vw; bottom: 5vh; opacity: .32; }
+  .track h2 { max-width: 9ch; }
+  .progressRail { right: 1rem; }
+  .carouselCard { width: 82vw; min-height: 26rem; }
+  .carouselCard b { left: 1.5rem; }
+  .finalOrb { width: 88vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 span { opacity: 1; transform: none; animation: none; }
+  .journey { height: auto; }
+  .journeySticky { position: static; height: auto; }
+  .journeyHeader, .progressRail { display: none; }
+  .track { position: relative; min-height: 85svh; opacity: 1; visibility: visible; transform: none; border-bottom: 1px solid #1f2940; }
+  .carouselCard { transition: none; }
+  .finalOrb { transform: scale(1) !important; }
+}

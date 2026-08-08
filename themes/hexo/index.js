@@ -32,6 +32,7 @@ import TagItemMini from './components/TagItemMini'
 import TocDrawer from './components/TocDrawer'
 import TocDrawerButton from './components/TocDrawerButton'
 import ArticleSwitchPlaceholder from './components/ArticleSwitchPlaceholder'
+import ResearchHome from '@/components/research/ResearchHome'
 import CONFIG from './config'
 import { Style } from './style'
 
@@ -63,10 +64,12 @@ const LayoutBase = props => {
   )
   const showArticleSwitchPlaceholder =
     hexoArticleRouteLoading && isArticleSlugPage && onLoading
+  const immersiveResearchHome =
+    router.route === '/' && siteConfig('HEXO_IMMERSIVE_RESEARCH_HOME', true, CONFIG)
 
   const headerSlot = post ? (
     <PostHero {...props} />
-  ) : router.route === '/' &&
+  ) : router.route === '/' && !immersiveResearchHome &&
     siteConfig('HEXO_HOME_BANNER_ENABLE', null, CONFIG) ? (
     <Hero {...props} />
   ) : null
@@ -121,17 +124,17 @@ const LayoutBase = props => {
         {/* 主区块 */}
         <main
           id='wrapper'
-          className={`${siteConfig('HEXO_HOME_BANNER_ENABLE', null, CONFIG) ? 'pt-0' : 'pt-16'} bg-hexo-background-gray dark:bg-black w-full md:px-8 lg:px-24 min-h-screen relative`}>
+          className={`${siteConfig('HEXO_HOME_BANNER_ENABLE', null, CONFIG) ? 'pt-0' : 'pt-16'} ${immersiveResearchHome ? 'px-0' : 'md:px-8 lg:px-24'} bg-hexo-background-gray dark:bg-black w-full min-h-screen relative`}>
           <div
             id='container-inner'
             className={
               (JSON.parse(siteConfig('LAYOUT_SIDEBAR_REVERSE'))
                 ? 'flex-row-reverse'
                 : '') +
-              ' w-full mx-auto lg:flex lg:space-x-4 justify-center relative z-10'
+              ` w-full mx-auto ${immersiveResearchHome ? '' : 'lg:flex lg:space-x-4 justify-center'} relative z-10`
             }>
             <div
-              className={`${className || ''} w-full ${fullWidth ? '' : 'max-w-4xl'} h-full overflow-hidden`}>
+              className={`${className || ''} w-full ${fullWidth || immersiveResearchHome ? '' : 'max-w-4xl'} h-full overflow-hidden`}>
               {showArticleSwitchPlaceholder ? (
                 <ArticleSwitchPlaceholder />
               ) : (
@@ -154,7 +157,7 @@ const LayoutBase = props => {
             </div>
 
             {/* 右侧栏 */}
-            <SideRight {...props} />
+            {!immersiveResearchHome && <SideRight {...props} />}
           </div>
         </main>
 
@@ -182,7 +185,21 @@ const LayoutBase = props => {
  * @returns
  */
 const LayoutIndex = props => {
-  return <LayoutPostList {...props} className='pt-8' />
+  if (!siteConfig('HEXO_IMMERSIVE_RESEARCH_HOME', true, CONFIG)) {
+    return <LayoutPostList {...props} className='pt-8' />
+  }
+  return (
+    <>
+      <ResearchHome />
+      <section id='blog' className='pt-20 pb-16 scroll-mt-16 max-w-5xl mx-auto'>
+        <div className='px-5 mb-8 dark:text-gray-200'>
+          <p className='text-xs tracking-widest text-indigo-400'>JOURNAL · 研究与思考</p>
+          <h2 className='text-3xl md:text-5xl font-semibold mt-3'>继续阅读博客</h2>
+        </div>
+        <div className='px-3'><LayoutPostList {...props} /></div>
+      </section>
+    </>
+  )
 }
 
 /**
