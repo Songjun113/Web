@@ -12,9 +12,9 @@
     "url": "https://github.com/tangly1024/NotionNext.git"
   },
   "author": {
-    "name": "tangly",
-    "email": "mail@tangly1024.com",
-    "url": "http://tangly1024.com"
+    "name": "songjun",
+    "email": "dsjzzn@qq.com",
+    "url": "https://songjundu.com"
   },
   "scripts": {
     "dev": "next dev",
