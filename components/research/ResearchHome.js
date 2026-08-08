@@ -66,7 +66,7 @@ function FeaturedCarousel() {
                 style={{
                   '--card-index': distance,
                   '--card-depth': Math.abs(distance),
-                  '--card-offset': `${distance * 82}%`,
+                  '--card-offset': `${distance * 92}%`,
                   '--card-visibility': distance === 0 ? 1 : Math.max(0.12, 0.34 - Math.abs(distance) * 0.1),
                   zIndex: cards.length - Math.abs(distance)
                 }}>
