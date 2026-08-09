@@ -157,23 +157,32 @@ export default function ResearchHome() {
             <span>RESEARCH DIRECTIONS</span>
             <span>{String(activeTrack + 1).padStart(2, '0')} / 03</span>
           </div>
-          {RESEARCH_TRACKS.map((track, index) => (
-            <article
-              key={track.id}
-              className={`${styles.track} ${index === activeTrack ? styles.trackActive : ''}`}
-              aria-hidden={index !== activeTrack}
-              style={{ '--track-accent': track.accent }}>
-              <span className={styles.trackNumber}>{track.index}</span>
-              <div className={styles.trackCopy}>
-                <p>{track.titleEn}</p>
-                <h2>{track.title}</h2>
-                <blockquote>{track.question}</blockquote>
-                <p className={styles.trackEnglish}>{track.questionEn}</p>
-                <div>{track.keywords.map(keyword => <span key={keyword}>{keyword}</span>)}</div>
-              </div>
-              <div className={styles.trackOrb} aria-hidden='true' />
-            </article>
-          ))}
+          <div className={styles.prismScene}>
+            <div className={styles.prismAura} aria-hidden='true' />
+            <div
+              className={styles.researchPrism}
+              style={{ '--prism-rotation': `${activeTrack * -120}deg` }}>
+              {RESEARCH_TRACKS.map((track, index) => (
+                <article
+                  key={track.id}
+                  className={`${styles.track} ${index === activeTrack ? styles.trackActive : ''}`}
+                  aria-hidden={index !== activeTrack}
+                  style={{ '--track-accent': track.accent, '--face-index': index }}>
+                  <span className={styles.faceEdge} aria-hidden='true' />
+                  <span className={styles.trackNumber}>{track.index}</span>
+                  <div className={styles.trackCopy}>
+                    <p>{track.titleEn}</p>
+                    <h2>{track.title}</h2>
+                    <blockquote>{track.question}</blockquote>
+                    <p className={styles.trackEnglish}>{track.questionEn}</p>
+                    <div>{track.keywords.map(keyword => <span key={keyword}>{keyword}</span>)}</div>
+                  </div>
+                  <div className={styles.trackOrb} aria-hidden='true' />
+                </article>
+              ))}
+            </div>
+            <div className={styles.prismShadow} aria-hidden='true' />
+          </div>
           <div className={styles.progressRail}><i style={{ height: `${((activeTrack + 1) / 3) * 100}%` }} /></div>
         </div>
       </section>

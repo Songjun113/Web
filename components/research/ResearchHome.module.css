@@ -94,27 +94,91 @@
 }
 
 .journey { position: relative; height: 300vh; background: #050914; }
-.journeySticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.journeySticky { position: sticky; top: 0; height: 100svh; overflow: hidden; perspective: 1500px; }
 .journeyHeader { z-index: 10; }
+
+.prismScene {
+  --prism-width: min(72vw, 70rem);
+  --prism-height: min(72svh, 45rem);
+  --prism-depth: clamp(11rem, 21vw, 21rem);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  perspective: 1500px;
+  perspective-origin: 50% 44%;
+}
+
+.researchPrism {
+  position: relative;
+  width: var(--prism-width);
+  height: var(--prism-height);
+  transform-style: preserve-3d;
+  transform: rotateX(-2.5deg) rotateY(var(--prism-rotation));
+  transition: transform 1.15s cubic-bezier(.16, 1, .3, 1);
+  will-change: transform;
+}
+
+.prismAura {
+  position: absolute;
+  width: min(76vw, 72rem);
+  height: min(72vh, 44rem);
+  border: 1px solid rgba(116, 247, 209, .1);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(63, 91, 145, .16), transparent 64%);
+  box-shadow: inset 0 0 8rem rgba(76, 109, 194, .08), 0 0 10rem rgba(5, 9, 20, .8);
+  transform: rotateX(68deg) translateZ(-12rem);
+}
+
+.prismShadow {
+  position: absolute;
+  bottom: 6vh;
+  width: min(58vw, 48rem);
+  height: 4rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .75);
+  filter: blur(28px);
+  transform: rotateX(72deg) translateZ(-8rem);
+}
 
 .track {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-columns: minmax(5rem, .32fr) minmax(18rem, 1fr) minmax(15rem, .7fr);
+  grid-template-columns: minmax(4rem, .24fr) minmax(18rem, 1fr) minmax(12rem, .58fr);
   align-items: center;
-  gap: clamp(1.5rem, 5vw, 6rem);
-  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 7vw, 8rem);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(7%) scale(.985);
-  transition: opacity .65s ease, transform .9s cubic-bezier(.16, 1, .3, 1), visibility .65s;
+  gap: clamp(1rem, 3.2vw, 4rem);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 4.5vw, 5rem);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--track-accent) 28%, #25324d);
+  border-radius: clamp(1.4rem, 3vw, 2.8rem);
+  background:
+    linear-gradient(125deg, color-mix(in srgb, var(--track-accent) 9%, transparent), transparent 38%),
+    linear-gradient(145deg, rgba(14, 23, 42, .97), rgba(4, 8, 20, .985));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.025), 0 3rem 7rem rgba(0,0,0,.48);
+  opacity: .46;
+  backface-visibility: hidden;
+  transform: rotateY(calc(var(--face-index) * 120deg)) translateZ(var(--prism-depth));
+  transition: opacity .65s ease, filter .65s ease, box-shadow .8s ease;
+  filter: brightness(.48) saturate(.65);
 }
 
-.trackActive { opacity: 1; visibility: visible; transform: none; }
+.trackActive {
+  opacity: 1;
+  filter: none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 3.5rem 9rem rgba(0,0,0,.58), 0 0 5rem color-mix(in srgb, var(--track-accent) 13%, transparent);
+}
+.faceEdge {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(transparent 7%, var(--track-accent) 30%, var(--track-accent) 70%, transparent 93%);
+  box-shadow: 0 0 2rem var(--track-accent);
+  opacity: .75;
+}
 .trackNumber {
   align-self: start;
-  margin-top: 10vh;
+  margin-top: 4vh;
   color: var(--track-accent);
   font: 400 clamp(4rem, 10vw, 10rem)/1 ui-monospace, monospace;
   opacity: .21;
@@ -129,7 +193,7 @@
 .trackCopy > div span { border: 1px solid color-mix(in srgb, var(--track-accent) 45%, transparent); border-radius: 999px; padding: .55rem .8rem; color: #cbd7e8; font-size: .73rem; }
 
 .trackOrb {
-  width: min(32vw, 28rem);
+  width: min(25vw, 22rem);
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--track-accent) 85%, white), color-mix(in srgb, var(--track-accent) 28%, #10182d) 34%, transparent 70%);
@@ -202,7 +266,8 @@
 @media (max-width: 760px) {
   .hero { min-height: 92svh; }
   .heroNav a, .heroIndex { display: none; }
-  .track { grid-template-columns: 1fr; align-content: center; padding-top: 7rem; }
+  .prismScene { --prism-width: 84vw; --prism-height: 70svh; --prism-depth: 7.2rem; perspective: 1100px; }
+  .track { grid-template-columns: 1fr; align-content: center; padding: 5.5rem 1.35rem 2rem; }
   .trackNumber { position: absolute; top: 5rem; right: 1rem; margin: 0; }
   .trackOrb { position: absolute; width: 70vw; right: -35vw; bottom: 5vh; opacity: .32; }
   .track h2 { max-width: 9ch; }
@@ -217,7 +282,10 @@
   .journey { height: auto; }
   .journeySticky { position: static; height: auto; }
   .journeyHeader, .progressRail { display: none; }
-  .track { position: relative; min-height: 85svh; opacity: 1; visibility: visible; transform: none; border-bottom: 1px solid #1f2940; }
+  .prismScene { position: relative; display: block; perspective: none; }
+  .prismAura, .prismShadow { display: none; }
+  .researchPrism { width: auto; height: auto; transform: none; }
+  .track { position: relative; min-height: 85svh; margin: 1rem; opacity: 1; transform: none; filter: none; border-bottom: 1px solid #1f2940; }
   .carouselCard { transition: none; }
   .finalOrb { transform: scale(1) !important; }
 }
