@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import FluidCanvas from './FluidCanvas'
 import styles from './ResearchHome.module.css'
 
-const splitTitle = '脑海无垠，进一寸有进一寸的欢喜'.split('')
+const splitTitle = 'brain changes world'.split('')
 
 function FeaturedCarousel() {
   const cards = useMemo(() => {
@@ -141,12 +141,12 @@ export default function ResearchHome() {
         </div>
         <div className={styles.heroCopy}>
           <p className={styles.kicker}>BIOMEDICAL ENGINEERING · HUMAN-CENTERED AI</p>
-          <h1 aria-label='脑海无垠，进一寸有进一寸的欢喜'>
+          <h1 aria-label='brain changes world'>
             {splitTitle.map((letter, index) => (
               <span key={`${letter}-${index}`} style={{ '--letter-delay': `${index * 45}ms` }}>{letter}</span>
             ))}
           </h1>
-          <p className={styles.heroEnglish}>Intelligence that reads human signals — and respects the human condition.</p>
+          <p className={styles.heroEnglish}>Turning brain signals into vision, language and action — and research into change.</p>
         </div>
         <div className={styles.heroIndex}>01 — 04</div>
       </section>
