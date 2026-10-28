@@ -1,9 +1,8 @@
 name: Stale issues
 
 on:
-  schedule:
-    - cron: '0 1 * * 1'
   workflow_dispatch:
+
 
 permissions:
   issues: write
