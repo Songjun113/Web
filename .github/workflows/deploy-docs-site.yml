@@ -4,8 +4,19 @@
 name: Deploy docs site (VitePress)
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - '.vitepress/**'
+      - 'README.md'
+      - 'functions/**'
+      - 'scripts/generate-theme-user-docs.mjs'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.github/workflows/deploy-docs-site.yml'
   workflow_dispatch:
-
 
 concurrency:
   group: deploy-docs-site
