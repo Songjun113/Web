@@ -4,6 +4,9 @@ name: pushUrl
 
 # 两种触发方式：一、push代码，二、每天国际标准时间23点（北京时间+8即早上7点）运行
 on:
+  push:
+  schedule:
+    - cron: '0 23 * * *' # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
   workflow_dispatch:
     inputs:
       unconditional-invoking:
@@ -15,7 +18,6 @@ on:
 # on:
   # schedule:
   #   - cron: '*/5 * * * *' # 每5分钟一次，测试用
-
 
 jobs:
   bot:
