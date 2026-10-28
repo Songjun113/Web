@@ -2,7 +2,8 @@ name: Originality proofs
 
 on:
   workflow_dispatch:
-
+  schedule:
+    - cron: '20 2 * * *'
 
 permissions:
   contents: write
