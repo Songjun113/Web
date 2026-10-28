@@ -2,10 +2,8 @@
 
 name: pushUrl
 
-# 每天 UTC 23:00（北京时间次日07:00）运行，也支持手动运行
+# 未配置搜索引擎提交凭据，关闭自动运行，仅保留手动入口
 on:
-  schedule:
-    - cron: '0 23 * * *' # https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
   workflow_dispatch:
     inputs:
       unconditional-invoking:
